@@ -32,5 +32,4 @@ class UserTestCase(ApiTestCase):
             )
         )
         self.assert200(response)
-        print response.json
         self.assertIsNotNone(response.json)
