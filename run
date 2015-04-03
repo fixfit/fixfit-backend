@@ -1,0 +1,2 @@
+export PYTHONPATH=.
+python fixfit/main.py
