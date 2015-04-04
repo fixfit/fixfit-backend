@@ -31,6 +31,7 @@ class User(db.Model):
         'profile_pic',
         'updated_at',
         'updated_at',
+        'id'
     ]
 
     @validates('email')

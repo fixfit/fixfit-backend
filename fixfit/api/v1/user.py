@@ -14,6 +14,16 @@ def create_user():
     db.session.commit()
     return jsonify(user.to_dict())
 
+@bp.route('/users/<id>', methods=['DELETE', 'GET'])
+def user(id):
+    user = User.query.filter_by(id=id).first_or_404()
+    if request.method == 'GET':
+        return jsonify(user.to_dict())
+    elif request.method == 'DELETE':
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({'status': 'ok'})
+
 @bp.route('/me', methods=['GET'])
 @jwt_required()
 def get_user():

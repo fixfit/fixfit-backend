@@ -9,13 +9,8 @@ class UserTestCase(ApiTestCase):
 
     def test_create_user(self):
         user = {
-            'first_name': fake.first_name(),
-            'last_name': fake.last_name(),
             'email': fake.email(),
-            'password': fake.password(),
-            'phone_number': fake.phone_number(),
-            'profile_pic': fake.image_url(),
-            'location': fake.address(),
+            'password': fake.password()
         }
         resp = self.client.post(
             '{}/users'.format(API_V1_PREFIX),
@@ -27,9 +22,36 @@ class UserTestCase(ApiTestCase):
         response = self.client.get(
             '{}/me'.format(API_V1_PREFIX),
             headers=self.get_headers_with_auth(
-                'ngoc@zopim.com',
+                'traineeA@test.com',
                 'haha'
             )
         )
         self.assert200(response)
         self.assertIsNotNone(response.json)
+
+    def test_delete_user(self):
+        self.assert200(
+            self.client.get(
+                '{}/users/{}'.format(
+                    API_V1_PREFIX,
+                    1
+                )
+            )
+        )
+
+        response = self.client.delete(
+            '{}/users/{}'.format(
+                API_V1_PREFIX,
+                1
+                )
+        )
+        self.assert200(response)
+
+        self.assert404(
+            self.client.get(
+                '{}/users/{}'.format(
+                    API_V1_PREFIX,
+                    1
+                )
+            )
+        )
