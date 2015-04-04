@@ -16,7 +16,7 @@ class User(db.Model):
         schemes=['pbkdf2_sha512']
     ))
     phone_number = db.Column(PhoneNumberType())
-    location = db.Column(db.String(50))
+    address = db.Column(db.String(50))
     profile_pic = db.Column(db.Text, default='')
     updated_at = db.Column(db.DateTime, onupdate=datetime.now)
     created_at = db.Column(db.DateTime, default=datetime.now)
