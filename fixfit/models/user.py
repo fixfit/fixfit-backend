@@ -20,13 +20,14 @@ class User(db.Model):
     profile_pic = db.Column(db.Text, default='')
     updated_at = db.Column(db.DateTime, onupdate=datetime.now)
     created_at = db.Column(db.DateTime, default=datetime.now)
+    current_card_id = db.Column(db.Integer)
 
     public_fields = [
         'first_name',
         'last_name',
         'email',
         'phone_number',
-        'location',
+        'address',
         'profile_pic',
         'updated_at',
         'updated_at',

@@ -59,7 +59,8 @@ class ApiTestCase(TestCase):
         # ]
         #
         # for user in self.users:
-        db.session.add(User(email='ngoc@zopim.com', password='haha'))
+        db.session.add(User(email='trainee@test.com', password='haha'))
+        db.session.add(User(email='trainer@test.com', password='haha'))
         db.session.commit()
 
     def get_headers_with_auth(self, username, password):
